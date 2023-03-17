@@ -1,21 +1,27 @@
 /* Change the text in the replacementContainer element to selected verbosity */
 
-let replacementContainer = document.getElementById('replacement-container');
+const replacementContainer = document.getElementById('replacement-container');
 
 document.querySelectorAll('input[name="toggleText"]').forEach((element) => {
   element.addEventListener("change", function(event) {
+
     if(this.id === '0-curt') {
-      replaceFormatText('0-curt'); 
-      replacementContainer.innerHTML = 'ok then';
+      const sentence = replaceText('0-curt'); // returns sting 'When implenting..'
+
+      // Create new paragraph element and add the sentence
+      let pElement = document.createElement('p');
+      pElement.innerHTML = sentence;
+
+      // Empty container content and add new content
+      replacementContainer.innerHTML = "";
+      replacementContainer.appendChild(pElement);
+
     } else if (this.id === '1-abbr') {
-      replaceFormatText('1-abbr');
-      replacementContainer.innerHTML = 'atchoum!';
+      replaceText('1-abbr');
     } else if (this.id === '2-verbose') {
-      replaceFormatText('2-verbose');
-      replacementContainer.innerHTML = 'so many words, so little time';
+      replaceText('2-verbose');
     } else {
-      replaceFormatText('0-curt');
-      replacementContainer.innerHTML = 'ok then again';
+      replaceText('0-curt');
     }
   });
 });
@@ -34,23 +40,25 @@ const arr2 = ["Change Data Capture (CDC)", "Extract Transform Load (ETL)", "Serv
 const regex = /\[mark\d+\]/ig;
 
 // The sample text
-let markedText = "When implementing [mark0] as the backbone of your [mark1] pipeline, it's important that you consider having an [mark2] in your [mark3]";
+let markedText = "When implementing [mark0] as the backbone of your [mark1] pipeline, it's important that you consider having an [mark2] in your [mark3].";
 
-function replaceFormatText(level) {
-  let splitParag = markedText.split(regex)
+function replaceText(level) {
+  let splitParag = markedText.split(regex);
+  let mergedText = "";
 
   if(level === '0-curt') {
-    console.log(level);
-  // text in <p> tag
-  // <p> blabla insert marked replacement balbla</p>
+    result = [splitParag, arr0]
+        .reduce((r, a) => (a.forEach((a, i) => (r[i] = r[i] || []).push(a)), r), [])
+        .reduce((a, b) => a.concat(b));
+
+    let newSentence = result.join('');
+    return newSentence;
+
   } else if (level === '1-abbr') {
-    console.log(level);
-  // text in <p> and <abbr> tags
-  // <p> tag and replaced text in  in <abbr title="bla">bla</abbr> bla </p>
-  //
+    //TODO
+    // text will be  in <p> tag and in <abbr title="bla">bla</abbr> bla </p>
   } else if (level === '2-verbose') {
-    console.log(level);
-  // text in <p> and <span> tags
-  // <p>bla bla <span class="replaced-text">blaa</span> <span class="replaced-text">Serv</span></p>
+    //TODO
+    // text in <p>bla bla <span class="replaced-text">blaa</span> blabla </p>
   }
 }

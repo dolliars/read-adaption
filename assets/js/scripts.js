@@ -10,17 +10,23 @@ document.querySelectorAll('input[name="toggleText"]').forEach((element) => {
 
       // Create new paragraph element and add the sentence
       let pElement = document.createElement('p');
-      pElement.innerHTML = sentence;
 
-      // Empty container content and add new content
+      pElement.innerHTML = sentence;
       replacementContainer.innerHTML = "";
       replacementContainer.appendChild(pElement);
 
     } else if (this.id === '1-abbr') {
-      replaceText('1-abbr');
+      replacementContainer.innerHTML = "";
+      let text = replaceText('1-abbr');
+      replacementContainer.appendChild(text);
     } else if (this.id === '2-verbose') {
-      replaceText('2-verbose');
+      // Empty container content and add new content
+      replacementContainer.innerHTML = "";
+      let text = replaceText('2-verbose');
+      replacementContainer.appendChild(text);
     } else {
+      // Empty container content and add new content
+      replacementContainer.innerHTML = "";
       replaceText('0-curt');
     }
   });
@@ -47,7 +53,7 @@ function replaceText(level) {
   let mergedText = "";
 
   if(level === '0-curt') {
-    result = [splitParag, arr0]
+    let result = [splitParag, arr0]
         .reduce((r, a) => (a.forEach((a, i) => (r[i] = r[i] || []).push(a)), r), [])
         .reduce((a, b) => a.concat(b));
 
@@ -55,10 +61,43 @@ function replaceText(level) {
     return newSentence;
 
   } else if (level === '1-abbr') {
-    //TODO
-    // text will be  in <p> tag and in <abbr title="bla">bla</abbr> bla </p>
+    let newLine = '<p>';
+
+    for (let i = 0; i < splitParag.length; i++) {
+      if (i !== splitParag.length - 1 ) {
+        newLine = newLine + splitParag[i];
+        newLine = newLine + '<abbr title="' + arr1[i] + '">' + arr0[i] + '</abbr>'
+      } else {
+        newLine = newLine + splitParag[i] + '</p>';
+      }
+    }
+
+    return newElement = stringToHTML(newLine);
+
   } else if (level === '2-verbose') {
-    //TODO
-    // text in <p>bla bla <span class="replaced-text">blaa</span> blabla </p>
+    let newLine = '<p>';
+
+    for (let i = 0; i < splitParag.length; i++) {
+      if (i !== splitParag.length - 1 ) {
+        newLine = newLine + splitParag[i] + '<span class="replaced-text">' + arr2[i] + '</span>'
+      } else {
+        newLine = newLine + splitParag[i] + '</p>';
+      }
+    }
+
+    return newElement = stringToHTML(newLine);
+
   }
 }
+
+/**
+ * Convert string into an HTML DOM node
+ *
+ * @param  {String} str The text string
+ * @return {Node}       the HTML node
+ */
+let stringToHTML = function (str) {
+  let parser = new DOMParser();
+	let doc = parser.parseFromString(str, 'text/html');
+	return doc.body;
+};

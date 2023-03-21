@@ -21,8 +21,31 @@
         <input class="button" type="radio" name="toggleText" id="2-verbose" />
       </div>
       <div id="replacement-container">hey, change me!</div>
-      <hr>
 
+<hr>
+
+      <div class="text-box">
+        <p>This is the "original" sentence</p>
+        <p>When implementing CDC as the backbone of your ETL pipeline, it's important that you
+        consider having an SLO in your SLA</p>
+      </div>
+
+      <div class="text-box">
+        <p>This is the sentence with "on:hover" abbreviation expansion</p>
+        <p>When implementing <abbr title="Change Data Capture">CDC</abbr> as the backbone of your
+        <abbr title="Extract Transform Load">ETL</abbr> pipeline, it's important that you consider
+        having an <abbr title="Service Level Objective">SLO</abbr> in your <abbr title="Service
+        Level Agreement">SLA</abbr></p>
+      </div>
+      
+      <div class="text-box">
+        <p>This is verbose text</p>
+        <p>When implementing <span class="replaced-text">Change Data Capture (CDC)</span> as the
+        backbone of your <span class=replaced-text">Extract Transform Load (ETL)</span> pipeline,
+        it's important that you consider having an <span class="replaced-text">Service Level
+        Objective (SLO)</span> in your <span class="replaced-text">Service Level Agreement
+      (SLA)</span></p>
+      </div>
     </main>
     <footer>
     </footer>

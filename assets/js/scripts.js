@@ -17,7 +17,7 @@ const arr2 = ["Change Data Capture (CDC)", "Extract Transform Load (ETL)", "Serv
 const regex = /\[mark\d+\]/ig;
 
 // The sample text
-let markedText = "When implementing [mark0] as the backbone of your [mark1] pipeline, it's important that you consider having an [mark2] in your [mark3].";
+let markedText = "When using a vendor to implement [mark0] for your [mark1] pipeline, make sure to have an [mark2] in your [mark3].";
 
 const splitTextArr = markedText.split(regex);
 const replaceContainer = document.getElementById('replace-container');

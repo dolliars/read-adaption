@@ -86,7 +86,7 @@ let changeText = function (level) {
  */
 let stringToHTML = function (str) {
   let parser = new DOMParser();
-	let doc = parser.parseFromString(str, 'text/html');
-	return doc.body.firstElementChild;
+  let doc = parser.parseFromString(str, 'text/html');
+  return doc.body.firstElementChild;
 };
 

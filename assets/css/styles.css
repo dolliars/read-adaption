@@ -13,7 +13,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  margin: 2em 4em;
+  margin: 2em 3em;
   font-family: Roboto, courier, sans-serif;
 }
 

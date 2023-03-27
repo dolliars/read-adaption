@@ -1,18 +1,10 @@
 :root {
   --clr-white: #fff;
-  --clr-black: #000;
-  --clr-grey: grey;
-  --clr-teal: #194256;
-  --clr-offwhite: #fce9ed;
-  --clr-lime: #7df1ca;
-  --clr-pink: #f17da4;
+  --clr-black: #1a1a1a;
+  --clr-grey: #ececec;
 
-  --primary: var(--clr-lime);
-  --secondary: var(--clr-pink);
-  --highlight: var(--clr-pink);
-
-  --backdrop : var(--clr-teal);
-  --surface: var(--clr-offwhite);
+  --backdrop : var(--clr-grey);
+  --surface: var(--clr-black);
   
   --background: var(--backdrop);
   --foreground: var(--surface);
@@ -21,12 +13,31 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  margin: 2em 4em;
+  font-family: Roboto, courier, sans-serif;
 }
 
-.text-box {
-  margin: 2em;
+.text-box, .toggle-box {
+  margin: 2em 0;
 }
 
-.replacement-container {
-  margin: 2em;
+
+label {
+  margin-right: 1.25em;
 }
+
+input {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--foreground);
+  transition: 0.15s all linear;
+  margin-right: 4px;
+  position: relative;
+  top: 3px;
+}
+
+input:checked {
+  border: 6px solid var(--foreground);
+}
+

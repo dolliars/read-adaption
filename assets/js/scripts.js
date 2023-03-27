@@ -28,20 +28,20 @@ document.querySelectorAll('input[name="textToggle"]').forEach((radioButton) => {
     // Empty container content to then add changed text
     replaceContainer.innerHTML = "";
 
-    if (this.id === '0-curt') {
-      replaceContainer.appendChild(changeText('0-curt'));
+    if (this.id === '0-terse') {
+      replaceContainer.appendChild(changeText('0-terse'));
     } else if (this.id === '1-abbr') {
       replaceContainer.appendChild(changeText('1-abbr'));
     } else if (this.id === '2-verbose') {
       replaceContainer.appendChild(changeText('2-verbose'));
     } else {
-      replaceContainer.appendChild(changeText('0-curt'));
+      replaceContainer.appendChild(changeText('0-terse'));
     }
   });
 });
 
 let changeText = function (level) {
-  if (level === '0-curt') {
+  if (level === '0-terse') {
     let zipArrs = [splitTextArr, arr0]
         .reduce((r, a) => (a.forEach((a, i) => (r[i] = r[i] || []).push(a)), r), [])
         .reduce((a, b) => a.concat(b));
